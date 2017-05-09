@@ -47,6 +47,21 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function attemptLogin(Request $request)
+    {
+        // 检查 is_active 字段是否为 1
+        $credentials = array_merge($this->credentials($request), ['is_active' => 1]);
+        return $this->guard()->attempt(
+            $credentials, $request->has('remember')
+        );
+    }
+
 
 
 
