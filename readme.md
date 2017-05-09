@@ -8,3 +8,5 @@
 </p>
 
 ## Laravel-Vue-Zhihu
+
+邮件服务使用[Laravel-SendCloud](https://github.com/NauxLiu/Laravel-SendCloud)
