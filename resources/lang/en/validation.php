@@ -98,9 +98,17 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'unique' => '邮件地址已经存在!',
         ],
+
+        'password' => [
+            'confirmed' => '两次输入的密码不一致 !',
+            'min' => '',
+            'string' => ' 密码 至少需要 :min 个字符.',
+
+        ],
+
     ],
 
     /*
