@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use Naux\Mail\SendCloudTemplate;
 
 class RegisterController extends Controller
 {
@@ -62,10 +64,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'avatar' => '/images/avatars/default.png', // 默认头像
+            'confirmation_token' => str_random(40), // user
             'password' => bcrypt($data['password']),
         ]);
+
+        $this->sendVerifyEmailTo($user);
+        return $user;
+    }
+
+    private function sendVerifyEmailTo($user)
+    {
+        // 模板变量
+        $data = [
+            'url' => route('email.verify', ['token' => $user->confirmation_token]),
+            'name' => $user->name
+        ];
+        $template = new SendCloudTemplate('zhihu_register',$data);
+
+        Mail::raw($template, function ($message) use ($user) {
+            $message->from('register@gooin.win', 'Laravel知乎注册');
+            $message->to($user->email);
+        });
     }
 }
