@@ -21,7 +21,10 @@
                                     <span class="help-block">
                                         <strong>{{ $errors->first('title') }}</strong>
                                     </span>
+                                @else
+                                    <br>
                                 @endif
+
 
                             <!-- 编辑器容器 -->
                                 <script id="container" name="body" type="text/plain">
@@ -31,8 +34,10 @@
                                     <span class="help-block">
                                         <strong>{{ $errors->first('body') }}</strong>
                                     </span>
+                                @else
+                                    <br>
                                 @endif
-                                <button class="btn btn-info pull-right" type="submit">发布问题</button>
+                                <button class="btn btn-info form-control" type="submit">发布问题</button>
                             </div>
 
                         </form>
@@ -45,9 +50,16 @@
 
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
-        var ue = UE.getEditor('container');
-        ue.ready(function () {
-            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
+        var ue = UE.getEditor('container', {
+            toolbars: [
+                ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft', 'justifycenter', 'justifyright', 'link', 'insertimage', 'fullscreen']
+            ],
+            elementPathEnabled: false,
+            enableContextMenu: false,
+            autoClearEmptyNode: true,
+            wordCount: false,
+            imagePopup: false,
+            autotypeset: {indent: true, imageBlockLine: 'center'}
         });
     </script>
 
