@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,19 +37,23 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        // 数据验证规则
-        $rules = [
-            'title' => 'required|min:6|max:100',
-            'body' => 'required|min:20',
-        ];
-        $messages = [
-            'body.required' => '内容不能为空',
-            'body.min' => '内容不能少于 20 个字符'
-        ];
-        // 进行验证
-        $this->validate($request, $rules, $messages);
+//        使用 StoreQuestionRequest请求 存储验证规则
+//        /app/http/Requests/StoreQuestionRequest
+
+//        // 数据验证规则
+//        $rules = [
+//            'title' => 'required|min:6|max:100',
+//            'body' => 'required|min:20',
+//        ];
+//        $messages = [
+//            'body.required' => '内容不能为空',
+//            'body.min' => '内容不能少于 20 个字符'
+//        ];
+//        // 进行验证
+//        $this->validate($request, $rules, $messages);
+
 
         // post请求 将表单中的数据保存到数组中
         $data = [
