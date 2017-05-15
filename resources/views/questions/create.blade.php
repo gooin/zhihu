@@ -14,7 +14,6 @@
                         {!! csrf_field() !!}
                         <!-- 如果验证有错, class加入 has-error-->
                             <div class="form-group {{ $errors->has('title') ? ' has-error' : ''}}">
-                                <label for="title">标题</label>
                                 <input type="text" name="title" class="form-control" placeholder="标题" id="title"
                                        value="{{old('title')}}">
                                 @if ($errors->has('title'))
@@ -26,10 +25,11 @@
                                 @endif
 
 
-                            <!-- 编辑器容器 -->
+                                <!-- 编辑器容器 -->
                                 <script id="container" name="body" type="text/plain">
                                     {!! old('body') !!}
                                 </script>
+
                                 @if ($errors->has('body'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('body') }}</strong>
@@ -38,6 +38,8 @@
                                     <br>
                                 @endif
                                 <button class="btn btn-info form-control" type="submit">发布问题</button>
+
+
                             </div>
 
                         </form>
@@ -47,6 +49,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
@@ -59,6 +62,8 @@
             autoClearEmptyNode: true,
             wordCount: false,
             imagePopup: false,
+            // 设置高度
+            initialFrameHeight: 200,
             autotypeset: {indent: true, imageBlockLine: 'center'}
         });
     </script>
