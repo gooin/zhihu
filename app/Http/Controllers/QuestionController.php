@@ -38,6 +38,18 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        // 数据验证规则
+        $rules = [
+            'title' => 'required|min:6|max:100',
+            'body' => 'required|min:20',
+        ];
+        $messages = [
+            'body.required' => '内容不能为空',
+            'body.min' => '内容不能少于 20 个字符'
+        ];
+        // 进行验证
+        $this->validate($request, $rules, $messages);
+
         // post请求 将表单中的数据保存到数组中
         $data = [
             'title' => $request->get('title'),
