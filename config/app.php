@@ -172,7 +172,8 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         // Ueditor
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,
-
+        // tinker
+        Laravel\Tinker\TinkerServiceProvider::class,
         /*
          * Application Service Providers...
          */

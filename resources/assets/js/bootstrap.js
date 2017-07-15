@@ -9,6 +9,8 @@ window._ = require('lodash');
 
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
+/*引用select2*/
+require('./select2.min');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -30,6 +32,7 @@ Vue.http.interceptors.push((request, next) => {
 
     next();
 });
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

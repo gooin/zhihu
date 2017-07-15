@@ -62,6 +62,8 @@ class QuestionController extends Controller
 
 
         // post请求 将表单中的数据保存到数组中
+        //dd($request->get('topics'));
+
         $data = [
             'title' => $request->get('title'),
             'body' => $request->get('body'),
