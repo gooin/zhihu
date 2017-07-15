@@ -17,7 +17,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/topics', function (Request $request) {
+Route::get('/topics',  function (Request $request) {
+    // 从数据库从查询话题的 id, name. 包含name的关键字
+    // http://zhihu.me/api/topics?q=laravel
+    // 返回包含 "laravel" 的所有数据
     $topics = \App\Topic::select(['id','name'])
         ->where('name', 'like','%'.$request->query('q').'%')
         ->get();
