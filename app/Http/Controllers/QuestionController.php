@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
+use App\Repositorires\QuestionRepository;
 use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-    public function __construct()
+    protected $questionRepository;
+    // 注入question仓库
+    public function __construct(QuestionRepository $questionRepository)
     {
         // 编辑问题需要登录
         $this->middleware('auth')->except(['index', 'show']);
+
+        $this->questionRepository = $questionRepository;
     }
 
     /**
@@ -89,7 +94,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         // 从数据库按id检索问题, 同时检索话题
-        $question = Question::where('id',$id)->with('topics')->first();
+        $question = $this->questionRepository->byIdWithTopics($id);
         return view('questions.show', compact('question'));
 
     }
@@ -140,9 +145,9 @@ class QuestionController extends Controller
                 return (int)$topic;
             }
             // 创建新的话题, name为手动填入的name
-            $newTopic = Topic::create(['name'=> $topic, 'questions_count'=> 1 ]);
+            $newTopic = Topic::create(['name' => $topic, 'questions_count' => 1]);
             // 返回新话题的id
-            return $newTopic-> id;
+            return $newTopic->id;
         })->toArray();
     }
 }
