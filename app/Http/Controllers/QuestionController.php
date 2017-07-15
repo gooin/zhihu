@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
-use App\Question;
 use App\Repositorires\QuestionRepository;
-use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +15,7 @@ class QuestionController extends Controller
     {
         // 编辑问题需要登录
         $this->middleware('auth')->except(['index', 'show']);
+
 
         $this->questionRepository = $questionRepository;
     }
@@ -67,7 +66,7 @@ class QuestionController extends Controller
 //        $this->validate($request, $rules, $messages);
 
 
-        $topics = $this->normalizeTopic($request->get('topics'));
+        $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
         //dd($topics);
 
         $data = [
@@ -76,7 +75,9 @@ class QuestionController extends Controller
             'user_id' => Auth::id()
         ];
 
-        $question = Question::create($data);
+
+        $question = $this->questionRepository->create($data);
+
 
         // 建立数据库的多对多联系, 填入question_topic表
         $question->topics()->attach($topics);
@@ -106,7 +107,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+{
         //
     }
 
@@ -133,21 +134,5 @@ class QuestionController extends Controller
         //
     }
 
-    private function normalizeTopic(array $topics)
-    {
-        // 遍历话题, 返回一个数组
-        return collect($topics)->map(function ($topic) {
-            // 如果话题已经存在
-            if (is_numeric($topic)) {
-                // 为话题的问题计数 +1
-                Topic::find($topic)->increment('questions_count');
-                // 返回话题id
-                return (int)$topic;
-            }
-            // 创建新的话题, name为手动填入的name
-            $newTopic = Topic::create(['name' => $topic, 'questions_count' => 1]);
-            // 返回新话题的id
-            return $newTopic->id;
-        })->toArray();
-    }
+
 }
