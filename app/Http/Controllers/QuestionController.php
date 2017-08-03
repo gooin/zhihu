@@ -27,8 +27,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
-        return 'index';
+        // 获取所有问题传入视图
+        $questions = $this->questionRepository->getQuestionsFeed();
+        return view('questions.index', compact('questions'));
+
     }
 
     /**
@@ -112,7 +114,7 @@ class QuestionController extends Controller
         $question = $this->questionRepository->byId($id);
 
         // 判断问题作者是否为当前用户
-        if(Auth::user()->owns($question)){
+        if (Auth::user()->owns($question)) {
             return view('questions.edit', compact('question'));
         }
         // 不是则返回
@@ -155,6 +157,13 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+        $question = $this->questionRepository->byId($id);
+
+        if(Auth::user()->owns($question)){
+            $question->delete();
+            return redirect('/');
+        }
+        abort(403, 'Forbidden');
     }
 
 

@@ -8338,4 +8338,44 @@ a.edit:hover {
   text-shadow: #222222;
 }
 
+.button.is-naked {
+  background: 0 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  height: auto;
+}
+
+.actions {
+  display: -webkit-box;
+  display: flex;
+  padding: 10px 20px;
+}
+
+.delete-form {
+  margin-left: 20px;
+}
+
+.delete-button {
+  color: #3097D1;
+  text-decoration: none;
+}
+
+.question-follow {
+  text-align: center;
+}
+
+.user-statics, .user-actions {
+  margin-top: 20px;
+}
+
+.user-statics {
+  display: -webkit-box;
+  display: flex;
+}
+
+.statics-item {
+  padding: 2px 20px;
+}
+
 /*# sourceMappingURL=app.css.map */

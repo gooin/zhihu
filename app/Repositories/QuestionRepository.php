@@ -63,4 +63,11 @@ class QuestionRepository
     {
         return Question::find($id);
     }
+
+    public function getQuestionsFeed()
+    {
+        // 按时间获取所有问题
+        return Question::published()->latest('updated_at')->with('user')->get();
+//        return Question::latest('updated_at')->get();
+    }
 }

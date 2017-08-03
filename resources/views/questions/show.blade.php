@@ -15,11 +15,18 @@
 
                     <div class="panel-body">
                         {!! $question->body !!}
+                    </div>
+
+                    <div class="actions">
                         {{--如果是问题作者查看问题, 则可以编辑问题--}}
                         {{--@if( $question->user_id == \Illuminate\Support\Facades\Auth::id())  菜鸟写法--}}
-                            @if( \Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->owns($question)  )
-
-                            <a  class="edit" href="{{$question->id}}/edit">编辑</a>
+                        @if( \Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->owns($question)  )
+                            <a class="edit" href="{{$question->id}}/edit">编辑</a>
+                            <form action="/questions/{{$question->id}}" method="post" class="delete-form">
+                                {{method_field('DELETE')}}
+                                {{csrf_field()}}
+                                <button class="button is-naked delete-button">删除</button>
+                            </form>
                         @endif
 
                     </div>
