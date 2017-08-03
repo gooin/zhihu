@@ -7,7 +7,7 @@
  * 使用 Model中自带的方法进行CUED, 分开 Model 和 控制器
  */
 
-namespace app\Repositorires;
+namespace app\Repositories;
 
 use App\Question;
 use App\Topic;
@@ -33,6 +33,12 @@ class QuestionRepository
         return Question::create($attr);
     }
 
+
+    public function update(array $attr)
+    {
+        return Question::update($attr);
+    }
+
     public function normalizeTopic(array $topics)
     {
         // 遍历话题, 返回一个数组
@@ -49,5 +55,12 @@ class QuestionRepository
             // 返回新话题的id
             return $newTopic->id;
         })->toArray();
+    }
+
+
+
+    public function byId($id)
+    {
+        return Question::find($id);
     }
 }

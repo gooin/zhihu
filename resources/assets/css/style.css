@@ -1,3 +1,32 @@
 .panel-body img {
     width: 100%;
 }
+
+a.topic {
+    background: #eff6fa;
+    padding: 1px 10px 0;
+    border-radius: 30px;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+a.topic:hover {
+    background: #777;
+    text-decoration: none;
+    color: #fff;
+}
+
+a.edit {
+    text-decoration: none;
+    font-family: 微软雅黑;
+    cursor: pointer;
+    color: #2579a9;
+}
+a.edit:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #216a94;
+    font-family: 微软雅黑;
+    text-shadow: #222222;
+}

@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
-use App\Repositorires\QuestionRepository;
+use App\Repositories\QuestionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
+
     protected $questionRepository;
+
     // 注入question仓库
     public function __construct(QuestionRepository $questionRepository)
     {
-        // 编辑问题需要登录
+        // 创建,编辑问题需要登录
         $this->middleware('auth')->except(['index', 'show']);
-
-
         $this->questionRepository = $questionRepository;
     }
 
@@ -107,8 +107,17 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-{
-        //
+    {
+        // 获取问题
+        $question = $this->questionRepository->byId($id);
+
+        // 判断问题作者是否为当前用户
+        if(Auth::user()->owns($question)){
+            return view('questions.edit', compact('question'));
+        }
+        // 不是则返回
+        return back();
+
     }
 
     /**
@@ -118,9 +127,23 @@ class QuestionController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreQuestionRequest $request, $id)
     {
         //
+        $question = $this->questionRepository->byId($id);
+        $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
+
+        // 更新
+        $question->update([
+            'title' => $request->get('title'),
+            'body' => $request->get('body')
+        ]);
+        // 同步更新话题
+        $question->topics()->sync($topics);
+
+        // 跳转到 show
+        return redirect()->route('questions.show', [$question->id]);
+
     }
 
     /**

@@ -6,7 +6,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url(./../css/style.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -8302,6 +8301,41 @@ button.close {
 
 .select2-container--classic.select2-container--open .select2-dropdown {
   border-color: #5897fb;
+}
+
+.panel-body img {
+  width: 100%;
+}
+
+a.topic {
+  background: #eff6fa;
+  padding: 1px 10px 0;
+  border-radius: 30px;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.topic:hover {
+  background: #777;
+  text-decoration: none;
+  color: #fff;
+}
+
+a.edit {
+  text-decoration: none;
+  font-family: 微软雅黑;
+  cursor: pointer;
+  color: #2579a9;
+}
+
+a.edit:hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: #216a94;
+  font-family: 微软雅黑;
+  text-shadow: #222222;
 }
 
 /*# sourceMappingURL=app.css.map */
