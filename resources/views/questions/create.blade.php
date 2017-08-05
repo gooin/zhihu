@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    {{--引用 UE 编辑器--}}
     @include('vendor.ueditor.assets')
 
     <div class="container">

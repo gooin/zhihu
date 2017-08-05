@@ -18,14 +18,16 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('email/verify/{token}',
-            [
-                'as' => 'email.verify',
-                'uses' => 'EmailController@verify'
-            ]);
+    [
+        'as' => 'email.verify',
+        'uses' => 'EmailController@verify'
+    ]);
 
 Route::resource('questions', 'QuestionController', [
-                        'names' =>
-                            [
-                                'create' => 'questions.create',
-                                'show' => 'questions.show'
-                            ]]);
+    'names' =>
+        [
+            'create' => 'questions.create',
+            'show' => 'questions.show'
+        ]]);
+
+Route::post('questions/{questions}/answer', 'AnswersController@store');
