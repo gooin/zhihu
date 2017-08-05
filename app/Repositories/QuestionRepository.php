@@ -11,6 +11,7 @@ namespace app\Repositories;
 
 use App\Question;
 use App\Topic;
+use App\User;
 
 
 /**

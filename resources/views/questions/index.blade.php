@@ -7,11 +7,14 @@
                 @foreach($questions as $question)
                     <div class="media">
                         <div class="media-left">
-                            <button class="btn btn-info">此处有个头像可以点击</button>
+                            {{--<button class="btn btn-info">此处有个头像可以点击</button>--}}
                             {{--数据库user表里头像路径不对--}}
-                            {{--<a href="#">--}}
+
+                            <a href="#">
+                                <img src="http://temp.im/78x78/fff/787878" alt="">
                                 {{--<img src="{{ $question->user->avatar }}" alt="{{ $question->user->name }}">--}}
-                            {{--</a>--}}
+                                {{--{{ $question->user->name }}--}}
+                            </a>
                         </div>
                         <div class="media-body">
                             <div class="media-heading">

@@ -40,5 +40,10 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    // 用户的答案关系, 1对多
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 
 }
