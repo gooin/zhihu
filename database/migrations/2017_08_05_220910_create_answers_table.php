@@ -20,9 +20,8 @@ class CreateAnswersTable extends Migration
             $table->text('body'); // 问题内容
             $table->integer('votes_count')->default(0); // 点赞总数, 默认为0
             $table->integer('comments_count')->default(0); // 评论总数, 默认为0
-            $table->string('is_hidden',8)->defualt('F'); // 是否隐藏(可能违规);
-            $table->string('close_comment',8)->defualt('F'); // 是否关闭评论 ;
-
+            $table->string('is_hidden',8)->default('F'); // 是否隐藏(可能违规);
+            $table->string('close_comment',8)->default('F'); // 是否关闭评论 ;
             $table->timestamps();
         });
     }

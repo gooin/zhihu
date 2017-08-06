@@ -97,7 +97,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         // 从数据库按id检索问题, 同时检索话题
-        $question = $this->questionRepository->byIdWithTopics($id);
+        $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
         return view('questions.show', compact('question'));
 
     }

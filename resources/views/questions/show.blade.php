@@ -38,10 +38,30 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        当前有 {{ $question->answers_count }} 个回答
+                         {{ $question->answers_count }} 个答案
                     </div>
 
                     <div class="panel-body">
+
+                        @foreach($question->answers as $answer)
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="/user/{{$answer->user->name}}">
+                                        <img src="{{ $answer->user->avatar }}" width="50px" alt="{{ $answer->user->name }}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="/user/{{$answer->user->name}}">
+                                            {{ $answer->user->name }}
+                                        </a>
+                                    </h4>
+                                    {!!  $answer->body !!}
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @if( \Illuminate\Support\Facades\Auth::check())
                         <form action="/questions/{{$question->id}}/answer" method="post">
                         {!! csrf_field() !!}
                         <!-- 如果验证有错, class加入 has-error-->
@@ -61,6 +81,9 @@
                                 <button class="btn btn-info form-control" type="submit">提交答案</button>
                             </div>
                         </form>
+                            @else
+                                <a href="/login" class="btn pull-right btn-info">登录后提交答案</a>
+                        @endif
                     </div>
 
                 </div>

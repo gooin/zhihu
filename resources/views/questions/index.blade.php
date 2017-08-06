@@ -11,9 +11,9 @@
                             {{--数据库user表里头像路径不对--}}
 
                             <a href="#">
-                                <img src="http://temp.im/78x78/fff/787878" alt="">
-                                {{--<img src="{{ $question->user->avatar }}" alt="{{ $question->user->name }}">--}}
-                                {{--{{ $question->user->name }}--}}
+                                {{--<img src="http://temp.im/78x78/fff/787878" alt="">--}}
+                                <img src="{{ $question->user->avatar }}" width="40px" alt="{{ $question->user->name }}">
+                                {{ $question->user->name }}
                             </a>
                         </div>
                         <div class="media-body">
@@ -23,11 +23,8 @@
                                 </a>
                             </div>
                         </div>
-
                     </div>
-
                 @endforeach
-
             </div>
         </div>
     </div>
