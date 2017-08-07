@@ -35,6 +35,14 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
+    public function follows($question)
+    {
+        // 创建用户关注的问题联系
+        return Follow::create([
+            'question_id' => $question,
+            'user_id' => $this->id
+        ]);
+    }
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

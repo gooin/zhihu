@@ -11,6 +11,7 @@ return array(
     'CreateQuestionsTable' => $baseDir . '/database/migrations/2017_05_14_143144_create_questions_table.php',
     'CreateQuestionsTopicsTable' => $baseDir . '/database/migrations/2017_05_15_145921_create_questions_topics_table.php',
     'CreateTopicsTable' => $baseDir . '/database/migrations/2017_05_15_144716_create_topics_table.php',
+    'CreateUserQuestionTable' => $baseDir . '/database/migrations/2017_08_07_145550_create_user_question_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

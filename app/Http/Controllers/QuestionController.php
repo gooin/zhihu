@@ -163,7 +163,7 @@ class QuestionController extends Controller
             $question->delete();
             return redirect('/');
         }
-        abort(403, 'Forbidden');
+        return abort(403, 'Forbidden');
     }
 
 

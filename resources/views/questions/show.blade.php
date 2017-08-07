@@ -5,7 +5,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{ $question->title }}
@@ -35,10 +35,22 @@
 
                 </div>
             </div>
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading question-follow">
+                        <h2>{{ $question->followers_count }}</h2>
+                        <span>关注者</span>
+                    </div>
+                    <div class="panel-body question-follow">
+                        <a href="/question/{{$question->id}}/follow" class="btn btn-default">关注问题</a>
+                        <a href="#container" class="btn btn-primary">撰写回答</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                         {{ $question->answers_count }} 个答案
+                        {{ $question->answers_count }} 个答案
                     </div>
 
                     <div class="panel-body">
@@ -47,7 +59,8 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="/user/{{$answer->user->name}}">
-                                        <img src="{{ $answer->user->avatar }}" width="50px" alt="{{ $answer->user->name }}">
+                                        <img src="{{ $answer->user->avatar }}" width="50px"
+                                             alt="{{ $answer->user->name }}">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -62,27 +75,29 @@
                         @endforeach
 
                         @if( \Illuminate\Support\Facades\Auth::check())
-                        <form action="/questions/{{$question->id}}/answer" method="post">
-                        {!! csrf_field() !!}
-                        <!-- 如果验证有错, class加入 has-error-->
-                            <div class="form-group {{$errors->has('body') ? ' has-error' : ''}}">
-                                <!-- 编辑器容器 -->
-                                <script id="container" name="body" type="text/plain">
-                                    {!! old('body') !!}
-                                </script>
+                            <form action="/questions/{{$question->id}}/answer" method="post">
+                            {!! csrf_field() !!}
+                            <!-- 如果验证有错, class加入 has-error-->
+                                <div class="form-group {{$errors->has('body') ? ' has-error' : ''}}">
+                                    <!-- 编辑器容器 -->
+                                    <script id="container" name="body" type="text/plain">
+                                        {!! old('body') !!}
+                                    </script>
 
-                                @if ($errors->has('body'))
-                                    <span class="help-block">
+                                    @if ($errors->has('body'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('body') }}</strong>
                                     </span>
-                                @else
-                                    <br>
-                                @endif
-                                <button class="btn btn-info form-control" type="submit">提交答案</button>
+                                    @else
+                                        <br>
+                                    @endif
+                                    <button class="btn btn-info form-control" type="submit">提交答案</button>
+                                </div>
+                            </form>
+                        @else
+                            <div class="alert alert-info">
+                                <a href="{{ url('login') }}" class="">登录</a>后提交答案
                             </div>
-                        </form>
-                            @else
-                                <a href="/login" class="btn pull-right btn-info">登录后提交答案</a>
                         @endif
                     </div>
 
