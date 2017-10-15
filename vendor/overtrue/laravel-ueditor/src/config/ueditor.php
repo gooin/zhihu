@@ -2,7 +2,9 @@
 
 /*
  * This file is part of the overtrue/laravel-ueditor.
+ *
  * (c) overtrue <i@overtrue.me>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
@@ -16,6 +18,9 @@ return [
             // middleware => 'auth',
         ],
     ],
+
+    // 是否使用 md5 格式文件名
+    'hash_filename' => true,
 
     // 上传 配置
     'upload' => [

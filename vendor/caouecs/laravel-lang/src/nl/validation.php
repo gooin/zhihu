@@ -47,6 +47,8 @@ return [
     'in_array'             => ':attribute bestaat niet in :other.',
     'integer'              => ':attribute moet een getal zijn.',
     'ip'                   => ':attribute moet een geldig IP-adres zijn.',
+    'ipv4'                 => ':attribute moet een geldig IPv4-adres zijn.',
+    'ipv6'                 => ':attribute moet een geldig IPv6-adres zijn.',
     'json'                 => ':attribute moet een geldige JSON-string zijn.',
     'max'                  => [
         'numeric' => ':attribute mag niet hoger dan :max zijn.',
@@ -136,7 +138,7 @@ return [
         'month'                 => 'maand',
         'name'                  => 'naam',
         'password'              => 'wachtwoord',
-        'password_confirmation' => 'wachtwoord bevestiging',
+        'password_confirmation' => 'wachtwoordbevestiging',
         'phone'                 => 'telefoonnummer',
         'second'                => 'seconde',
         'sex'                   => 'geslacht',

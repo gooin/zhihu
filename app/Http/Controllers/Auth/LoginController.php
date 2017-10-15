@@ -35,7 +35,7 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            flash('欢迎回来', 'info');
+            flash('欢迎回来', 'success');
             return $this->sendLoginResponse($request);
         }
 
