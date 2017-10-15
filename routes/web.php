@@ -32,4 +32,4 @@ Route::resource('questions', 'QuestionController', [
 
 Route::post('questions/{questions}/answer', 'AnswerController@store');
 
-//Route::get('question/{question}/follow', 'QuestionFollowController@follow');
+Route::get('question/{question}/follow', 'QuestionFollowController@follow');

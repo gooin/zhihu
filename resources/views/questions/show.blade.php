@@ -42,7 +42,10 @@
                         <span>关注者</span>
                     </div>
                     <div class="panel-body question-follow">
-                        <a href="/question/{{$question->id}}/follow" class="btn btn-default">关注问题</a>
+                        <a href="/question/{{$question->id}}/follow"
+                           class="btn {{Auth::user()->isFollow($question->id) ? 'btn-success' : 'btn-default' }}">
+                            {{Auth::user()->isFollow($question->id) ? '已关注' : '关注问题' }}
+                        </a>
                         <a href="#container" class="btn btn-primary">撰写回答</a>
                     </div>
                 </div>

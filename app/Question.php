@@ -34,4 +34,10 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'user_question')->withTimestamps();
+
+    }
 }

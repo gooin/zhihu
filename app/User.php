@@ -35,14 +35,33 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
-    public function follows($question)
+//    public function follows($question)
+////    {
+////        // 创建用户关注的问题联系
+////        return Follow::create([
+////            'question_id' => $question,
+////            'user_id' => $this->id
+////        ]);
+////    }
+
+//  使用 toggle， 如果用户已经关注则取关，未关注则关注
+    public function follows()
     {
-        // 创建用户关注的问题联系
-        return Follow::create([
-            'question_id' => $question,
-            'user_id' => $this->id
-        ]);
+        return $this->belongsToMany(Question::class, 'user_question')->withTimestamps();
     }
+
+    public function followThis($question)
+    {
+        return $this->follows()->toggle($question);
+    }
+
+
+    public function isFollow($question)
+    {
+        return !! $this->follows()->where('question_id',$question)->count();
+    }
+
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
