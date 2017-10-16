@@ -46,7 +46,7 @@
                            {{--class="btn {{Auth::user()->isFollow($question->id) ? 'btn-success' : 'btn-default' }}">--}}
                             {{--{{Auth::user()->isFollow($question->id) ? '已关注' : '关注问题' }}--}}
                         {{--</a>--}}
-                        <question-follow-button question="{{$question->id}}" user="{{Auth::id()}}"></question-follow-button>
+                        <question-follow-button question="{{$question->id}}"></question-follow-button>
                         <a href="#container" class="btn btn-primary">撰写回答</a>
                     </div>
                 </div>

@@ -29,33 +29,51 @@ Route::get('/topics', function (Request $request) {
 
 
 Route::post('/question/follower', function (Request $request) {
+    $user = Auth::guard('api')->user();
+
     // 读取数据库判断用户是否关注问题
-    $followed = \App\Follow::where('question_id', $request->get('question'))
-        ->where('user_id', $request->get('user'))
-        ->count();
+//    $followed = \App\Follow::where('question_id', $request->get('question'))
+//        ->where('user_id', $request->get('user'))
+//        ->count();
+    $followed = $user->isFollow($request->get('question'));
+
     if ($followed) {
         return response()->json(['followed' => true]);
     }
     return response()->json(['followed' => false]);
 //    return response()->json(['followed' => true]);return response()->json(['question' => request('question')]);
 
-})->middleware('api');
+})->middleware('auth:api');
 
 // 关注问题
 Route::post('/question/follow', function (Request $request) {
-    $followed = \App\Follow::where('question_id', $request->get('question'))
-        ->where('user_id', $request->get('user'))
-        ->first();
-    if ($followed !== null) {
-        $followed->delete();
+
+    $user = Auth::guard('api')->user();
+
+    // 检索是否关注
+//    $followed = \App\Follow::where('question_id', $request->get('question'))
+//        ->where('user_id', $user->id)
+//        ->first();
+
+    $question = \App\Question::find($request->get('question'));
+
+    $followed = $user->followThis($question->id);
+
+
+    if (count($followed['detached']) > 0) {
+        $question->decrement('followers_count');
+//        $followed->delete();
         return response()->json(['followed' => false]);
     }
-    \App\Follow::create([
-        'question_id' => $request->get('question'),
-        'user_id' => $request->get('user')
-    ]);
+
+    $question->increment('followers_count');
+
+//    \App\Follow::create([
+//        'question_id' => $request->get('question'),
+//        'user_id' => $user->id
+//    ]);
 
     return response()->json(['followed' => true]);
 //    return response()->json(['followed' => true]);return response()->json(['question' => request('question')]);
 
-})->middleware('api');
+})->middleware('auth:api');

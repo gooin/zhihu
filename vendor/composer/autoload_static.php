@@ -349,12 +349,12 @@ class ComposerStaticInit2e348757ffad59dcab5e07c8a5bdef40
     );
 
     public static $classMap = array (
+        'AddApiTokenToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_233404_add_api_token_to_users.php',
         'CreateAnswersTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_05_220910_create_answers_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateQuestionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_14_143144_create_questions_table.php',
         'CreateQuestionsTopicsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_15_145921_create_questions_topics_table.php',
         'CreateTopicsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_15_144716_create_topics_table.php',
-        'CreateUserQuestion' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_140126_create_user_question.php',
         'CreateUserQuestionTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_140228_create_user_question_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',

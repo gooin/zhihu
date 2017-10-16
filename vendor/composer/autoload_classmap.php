@@ -6,12 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddApiTokenToUsers' => $baseDir . '/database/migrations/2017_10_15_233404_add_api_token_to_users.php',
     'CreateAnswersTable' => $baseDir . '/database/migrations/2017_08_05_220910_create_answers_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateQuestionsTable' => $baseDir . '/database/migrations/2017_05_14_143144_create_questions_table.php',
     'CreateQuestionsTopicsTable' => $baseDir . '/database/migrations/2017_05_15_145921_create_questions_topics_table.php',
     'CreateTopicsTable' => $baseDir . '/database/migrations/2017_05_15_144716_create_topics_table.php',
-    'CreateUserQuestion' => $baseDir . '/database/migrations/2017_10_15_140126_create_user_question.php',
     'CreateUserQuestionTable' => $baseDir . '/database/migrations/2017_10_15_140228_create_user_question_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

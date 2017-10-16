@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'confirmation_token'
+        'name', 'email', 'password', 'avatar', 'confirmation_token', 'api_token'
     ];
 
     /**
@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function isFollow($question)
     {
-        return !! $this->follows()->where('question_id',$question)->count();
+        return !!$this->follows()->where('question_id', $question)->count();
     }
 
 
