@@ -67,6 +67,12 @@ class User extends Authenticatable
         return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id')->withTimestamps();
     }
 
+    // 检查被关注者
+    public function followersUser()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'follower_id')->withTimestamps();
+    }
+
 
     public function sendPasswordResetNotification($token)
     {
@@ -77,6 +83,12 @@ class User extends Authenticatable
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    // 关注用户
+    public function followThisUser($user)
+    {
+        return $this->followers()->toggle($user);
     }
 
 }
