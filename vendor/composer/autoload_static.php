@@ -352,6 +352,7 @@ class ComposerStaticInit2e348757ffad59dcab5e07c8a5bdef40
         'AddApiTokenToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_233404_add_api_token_to_users.php',
         'CreateAnswersTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_05_220910_create_answers_table.php',
         'CreateFollowersTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_16_140827_create_followers_table.php',
+        'CreateNotificationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_24_103754_create_notifications_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateQuestionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_14_143144_create_questions_table.php',
         'CreateQuestionsTopicsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_15_145921_create_questions_topics_table.php',
