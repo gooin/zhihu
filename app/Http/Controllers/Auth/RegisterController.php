@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mailer\UserMailer;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -79,16 +80,21 @@ class RegisterController extends Controller
 
     private function sendVerifyEmailTo($user)
     {
-        // 模板变量
-        $data = [
-            'url' => route('email.verify', ['token' => $user->confirmation_token]),
-            'name' => $user->name
-        ];
-        $template = new SendCloudTemplate('zhihu_register',$data);
 
-        Mail::raw($template, function ($message) use ($user) {
-            $message->from('register@gooin.win', 'Laravel知乎注册');
-            $message->to($user->email);
-        });
+        (new UserMailer())->userRegister(
+            $user,
+            '【知乎】欢迎注册知乎',
+            'register@gooin.win');
+//        // 模板变量
+//        $data = [
+//            'url' => route('email.verify', ['token' => $user->confirmation_token]),
+//            'name' => $user->name
+//        ];
+//        $template = new SendCloudTemplate('zhihu_register',$data);
+//
+//        Mail::raw($template, function ($message) use ($user) {
+//            $message->from('register@gooin.win', 'Laravel知乎注册');
+//            $message->to($user->email);
+//        });
     }
 }
