@@ -2,11 +2,14 @@
 
 namespace App\Notifications;
 
+use App\Channels\SendcloudChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Auth;
+use Mail;
+use Naux\Mail\SendCloudTemplate;
 
 class NewUserFollowNotification extends Notification
 {
@@ -31,7 +34,7 @@ class NewUserFollowNotification extends Notification
     public function via($notifiable)
     {
 //        return ['mail'];
-        return ['database'];
+        return ['database',SendcloudChannel::class];
     }
 
     /**
@@ -54,6 +57,21 @@ class NewUserFollowNotification extends Notification
         return [
             'name' => Auth::guard('api')->user()->name
         ];
+    }
+
+    public function toSendcloud($notifiable)
+    {
+        // 模板变量
+        $data = [
+            'url' => 'http://zhihu.dev',
+            'name' => Auth::guard('api')->user()->name
+        ];
+        $template = new SendCloudTemplate('zhihu_new_follower',$data);
+
+        Mail::raw($template, function ($message) use ($notifiable) {
+            $message->from('notification@gooin.win', '【知乎】新用户关注通知');
+            $message->to($notifiable->email);
+        });
     }
     /**
      * Get the array representation of the notification.
