@@ -359,6 +359,7 @@ class ComposerStaticInit2e348757ffad59dcab5e07c8a5bdef40
         'CreateTopicsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_15_144716_create_topics_table.php',
         'CreateUserQuestionTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_140228_create_user_question_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateVotesTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_26_151119_create_votes_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
