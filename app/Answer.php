@@ -14,10 +14,17 @@ class Answer extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-     }
+    }
+
     // 指定答案与问题的联系 1对1 联系
     public function question()
     {
         return $this->belongsTo(Question::class);
-     }
+    }
+
+    // 与评论多态关联
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }
