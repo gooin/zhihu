@@ -31,8 +31,11 @@
                             </form>
                         @endif
 
+                        <comments type="question"
+                                  model="{{$question->id}}"
+                                  count="{{$question->comments_count}}"
+                        ></comments>
                     </div>
-
                 </div>
             </div>
             <div class="col-md-3">
@@ -63,11 +66,12 @@
                             <div class="media">
                                 <div class="media-left">
                                     {{--<a href="/user/{{$answer->user->name}}">--}}
-                                        {{--<img src="{{ $answer->user->avatar }}" width="50px"--}}
-                                             {{--alt="{{ $answer->user->name }}">--}}
+                                    {{--<img src="{{ $answer->user->avatar }}" width="50px"--}}
+                                    {{--alt="{{ $answer->user->name }}">--}}
                                     {{--</a>--}}
 
-                                    <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
+                                    <user-vote-button answer="{{$answer->id}}"
+                                                      count="{{$answer->votes_count}}"></user-vote-button>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
@@ -76,6 +80,11 @@
                                         </a>
                                     </h4>
                                     {!!  $answer->body !!}
+
+                                    <comments type="answer"
+                                              model="{{$answer->id}}"
+                                              count="{{$answer->comments()->count()}}"
+                                    ></comments>
                                 </div>
                             </div>
                         @endforeach
